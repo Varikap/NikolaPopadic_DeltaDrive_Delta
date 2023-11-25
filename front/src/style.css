@@ -1,0 +1,49 @@
+/* NavBar Styling */
+.ui.menu:first-child {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Jumbotron/Message styling */
+.ui.message.message-container {
+    text-align: center;
+    padding: 50px;
+    box-shadow: 0;
+    margin: 0;
+}
+/* UserForm styling */
+.form-container{
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+/* UserForm alert message */
+.ui.alertMssg {
+    margin-top: 0;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.landing-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to right, #537895, #09203f);
+    color: #fff;
+    text-align: center;
+  }
+  
+  .message-container {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .message-container p {
+    font-size: 1.2em;
+    margin-top: 10px;
+  }
