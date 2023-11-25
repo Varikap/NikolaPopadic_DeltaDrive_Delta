@@ -37,9 +37,17 @@ export const NavBar = () => {
         Home
       </Link>
       {isAuthenticated ? (
-        <Link to="/find-ride" className="item">
-          Find Ride
-        </Link>
+        <>
+          <Link to="/find-ride" className="item">
+            Find Ride
+          </Link>
+          <Link to="/my-rides" className="item">
+            My Rides
+          </Link>
+          <Link to="my-rates" className="item">
+            My Rates
+          </Link>
+        </>
       ) : (
         ""
       )}

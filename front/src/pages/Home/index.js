@@ -18,6 +18,17 @@ export const Home = () => {
           </Button>
         </Link>
       );
+    } else {
+      return (
+        <Link to="/find-ride">
+          <Button color="black" animated secondary>
+            <Button.Content visible>Find ride</Button.Content>
+            <Button.Content hidden>
+              <Icon name="arrow right" />
+            </Button.Content>
+          </Button>
+        </Link>
+      );
     }
   };
 

@@ -1,6 +1,11 @@
 import API from "../utils/API";
 import history from "../history";
-import { FIND_RIDE, UPDATE_CURRENT_RIDE } from "./types";
+import {
+  FIND_RIDE,
+  UPDATE_COMPLETED_RIDES,
+  UPDATE_CURRENT_RIDE,
+  UPDATE_RATES,
+} from "./types";
 
 export const findRide = (data) => async (dispatch) => {
   try {
@@ -55,6 +60,31 @@ export const rateRide = (data) => async (dispatch) => {
   try {
     const response = await API.rateRide(getAuthTokenHeader(), data);
     history.push("/find-ride");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getRates = () => async (dispatch) => {
+  try {
+    const response = await API.getRates(getAuthTokenHeader());
+    dispatch({
+      type: UPDATE_RATES,
+      payload: response.data,
+    });
+    console.log(response.data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getCompletedRides = () => async (dispatch) => {
+  try {
+    const response = await API.getCompletedRides(getAuthTokenHeader());
+    dispatch({
+      type: UPDATE_COMPLETED_RIDES,
+      payload: response.data,
+    });
   } catch (err) {
     console.log(err);
   }

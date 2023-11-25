@@ -13,6 +13,8 @@ import PrivateRoute from "./PrivateRoute";
 import NoMatch from "../pages/NoMatch";
 import BookRidePage from "../pages/DrivingSimulationMap";
 import Raiting from "../pages/Raiting";
+import MyRates from "../pages/MyRates";
+import MyRides from "../pages/MyRides";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +34,8 @@ export const App = () => {
           <PrivateRoute path="/find-ride" component={FindRide} />
           <PrivateRoute path="/book-ride" component={BookRidePage} />
           <PrivateRoute path="/raiting" component={Raiting} />
+          <PrivateRoute path="/my-rates" component={MyRates} />
+          <PrivateRoute path="/my-rides" component={MyRides} />
           <PrivateRoute path="/dashboard" component={UserDashboard} />
           <Route component={NoMatch} />
         </Switch>

@@ -22,4 +22,10 @@ export default {
   rateRide(headers, data) {
     return axios.post("/rating/rate", data, { headers });
   },
+  getRates(headers) {
+    return axios.get("/rating/get-ratings", { headers });
+  },
+  getCompletedRides(headers) {
+    return axios.get("/ride/get-completed-rides", { headers });
+  },
 };
