@@ -2,12 +2,14 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  ManyToOne,
+  OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
+import { User } from '../../users/entities/user.entity';
 import { Vehicle } from '../../vehicles/entities/vehicle.entity';
 import { Driver } from '../../drivers/entities/driver.entity';
-import { User } from '../../users/entities/user.entity';
+import { Rating } from '../../ratings/entities/rating.entity';
 
 @Entity()
 export class Ride {
@@ -43,4 +45,8 @@ export class Ride {
   @ManyToOne(() => Driver, (driver) => driver.rides, { eager: true })
   @JoinColumn({ name: 'driverId', referencedColumnName: 'id' })
   driver: Driver;
+
+  @OneToOne(() => Rating, (rating) => rating.ride, { eager: true })
+  @JoinColumn({ name: 'ratingId', referencedColumnName: 'id' })
+  rating: Rating;
 }

@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DriverService } from '../drivers/driver.service';
+import { Ride } from '../rides/entities/ride.entity';
 import { UserService } from '../users/user.service';
 import { CreateRatingDto } from './dto/create-rating.dto';
 import { UpdateRatingDto } from './dto/update-rating.dto';
@@ -12,6 +13,8 @@ export class RatingService {
   constructor(
     @InjectRepository(Rating)
     private readonly ratingRepository: Repository<Rating>,
+    @InjectRepository(Ride)
+    private readonly rideRepository: Repository<Ride>,
     private readonly userService: UserService,
     private readonly driverService: DriverService,
   ) {}
@@ -31,7 +34,7 @@ export class RatingService {
     }
     return this.ratingRepository.find({
       where: { user },
-      relations: ['driver'],
+      relations: ['driver', 'ride'],
     });
   }
 
@@ -48,11 +51,19 @@ export class RatingService {
       );
     }
 
+    const ride = await this.rideRepository.findOneBy({ id: ratingData.rideId });
+    if (!ride) {
+      throw new NotFoundException(
+        `Ride with ID ${ratingData.rideId} not found`,
+      );
+    }
+
     const rating = new Rating();
     rating.value = ratingData.value;
     rating.comment = ratingData.comment;
     rating.user = user;
     rating.driver = driver;
+    rating.ride = ride;
     return this.ratingRepository.save(rating);
   }
 

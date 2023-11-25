@@ -31,12 +31,9 @@ export const registerUser = (data) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: response.data,
     });
-    history.push("/find-ride");
+    history.push("/login");
   } catch (err) {
-    dispatch(getErrors(err.response.data));
-    dispatch({
-      type: REGISTER_FAIL,
-    });
+    console.log(err);
   }
 };
 

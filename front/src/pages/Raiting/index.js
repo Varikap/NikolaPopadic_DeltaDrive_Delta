@@ -13,8 +13,6 @@ const RatingCommentForm = () => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
 
-  console.log("currentRide", currentRide);
-
   const handleRatingChange = (e, { rating }) => {
     setRating(rating);
   };
@@ -26,9 +24,6 @@ const RatingCommentForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    console.log("Rating:", rating);
-    console.log("Comment:", comment);
-
     setRating(0);
     setComment("");
     dispatch(
@@ -36,6 +31,7 @@ const RatingCommentForm = () => {
         value: rating,
         comment: comment,
         driverId: currentRide.driver.id,
+        rideId: currentRide.id,
       })
     );
   };

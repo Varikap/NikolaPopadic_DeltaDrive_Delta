@@ -101,20 +101,24 @@ const FindRide = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        {rides.map((rider, index) => (
+        {rides.map((driver, index) => (
           <Marker
             key={index}
-            position={[rider.latitude, rider.longitude]}
-            onClick={() => handleMarkerClick(rider)}
+            position={[driver.latitude, driver.longitude]}
+            onClick={() => handleMarkerClick(driver)}
             icon={driverIcon}
           >
             <Popup>
-              <strong>{rider.brand}</strong>
+              <strong>{driver.brand}</strong>
               <br />
-              {rider.firstName} {rider.lastName}
+              Driver: {driver.driver.firstName} {driver.driver.lastName}
+              <br />
+              Phone Number: {driver.driver.phoneNumber}
+              <br />
+              License Number: {driver.driver.licenseNumber}
               <br />
               Start Price:{" "}
-              {parseFloat(rider.startPrice).toLocaleString("sr-RS", {
+              {parseFloat(driver.startPrice).toLocaleString("sr-RS", {
                 style: "currency",
                 currency: "EUR",
                 minimumFractionDigits: 2,
@@ -122,7 +126,7 @@ const FindRide = () => {
               })}
               <br />
               Price Per KM:{" "}
-              {parseFloat(rider.pricePerKm).toLocaleString("sr-RS", {
+              {parseFloat(driver.pricePerKm).toLocaleString("sr-RS", {
                 style: "currency",
                 currency: "EUR",
                 minimumFractionDigits: 2,
@@ -132,7 +136,7 @@ const FindRide = () => {
               <button
                 disabled={!destLatitude || !destLongitude}
                 className="book-button"
-                onClick={() => handleBookClick(rider)}
+                onClick={() => handleBookClick(driver)}
               >
                 Book
               </button>

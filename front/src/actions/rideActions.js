@@ -72,7 +72,6 @@ export const getRates = () => async (dispatch) => {
       type: UPDATE_RATES,
       payload: response.data,
     });
-    console.log(response.data);
   } catch (err) {
     console.log(err);
   }

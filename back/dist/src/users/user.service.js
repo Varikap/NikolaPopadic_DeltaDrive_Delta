@@ -25,7 +25,6 @@ let UserService = class UserService {
     async create(newUser) {
         newUser.password = await bcrypt.hash(newUser.password, parseInt(process.env.SALT));
         newUser.birthDate = new Date(newUser.birthDate);
-        console.log(newUser);
         const user = this.userRepository.create(newUser);
         return await this.userRepository.save(user);
     }

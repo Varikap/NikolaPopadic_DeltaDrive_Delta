@@ -11,8 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Rating = void 0;
 const typeorm_1 = require("typeorm");
-const driver_entity_1 = require("../../drivers/entities/driver.entity");
 const user_entity_1 = require("../../users/entities/user.entity");
+const driver_entity_1 = require("../../drivers/entities/driver.entity");
+const ride_entity_1 = require("../../rides/entities/ride.entity");
 let Rating = class Rating {
 };
 exports.Rating = Rating;
@@ -36,6 +37,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => driver_entity_1.Driver, (driver) => driver.ratings),
     __metadata("design:type", driver_entity_1.Driver)
 ], Rating.prototype, "driver", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => ride_entity_1.Ride, (ride) => ride.rating),
+    __metadata("design:type", ride_entity_1.Ride)
+], Rating.prototype, "ride", void 0);
 exports.Rating = Rating = __decorate([
     (0, typeorm_1.Entity)()
 ], Rating);

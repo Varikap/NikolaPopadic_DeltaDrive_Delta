@@ -16,6 +16,4 @@ export class RatingDto {
   })
   @IsString()
   comment: string;
-
-  // TODO: Add user and driver information...
 }

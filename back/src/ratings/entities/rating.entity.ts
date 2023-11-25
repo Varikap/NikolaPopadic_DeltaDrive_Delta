@@ -1,6 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Driver } from '../../drivers/entities/driver.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  ManyToOne,
+} from 'typeorm';
 import { User } from '../../users/entities/user.entity';
+import { Driver } from '../../drivers/entities/driver.entity';
+import { Ride } from '../../rides/entities/ride.entity';
 
 @Entity()
 export class Rating {
@@ -18,4 +25,7 @@ export class Rating {
 
   @ManyToOne(() => Driver, (driver) => driver.ratings)
   driver: Driver;
+
+  @OneToOne(() => Ride, (ride) => ride.rating)
+  ride: Ride;
 }

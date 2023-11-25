@@ -11,9 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Ride = void 0;
 const typeorm_1 = require("typeorm");
+const user_entity_1 = require("../../users/entities/user.entity");
 const vehicle_entity_1 = require("../../vehicles/entities/vehicle.entity");
 const driver_entity_1 = require("../../drivers/entities/driver.entity");
-const user_entity_1 = require("../../users/entities/user.entity");
+const rating_entity_1 = require("../../ratings/entities/rating.entity");
 let Ride = class Ride {
 };
 exports.Ride = Ride;
@@ -60,6 +61,11 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ name: 'driverId', referencedColumnName: 'id' }),
     __metadata("design:type", driver_entity_1.Driver)
 ], Ride.prototype, "driver", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => rating_entity_1.Rating, (rating) => rating.ride, { eager: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'ratingId', referencedColumnName: 'id' }),
+    __metadata("design:type", rating_entity_1.Rating)
+], Ride.prototype, "rating", void 0);
 exports.Ride = Ride = __decorate([
     (0, typeorm_1.Entity)()
 ], Ride);

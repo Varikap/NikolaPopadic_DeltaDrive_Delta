@@ -4,7 +4,7 @@ import { Table, Container, Header } from "semantic-ui-react";
 import { getCompletedRides } from "../../actions/rideActions";
 import "./drivingHistory.css";
 
-const DrivingHistory = ({ data }) => {
+const DrivingHistory = () => {
   const dispatch = useDispatch();
   const { completedRides } = useSelector((state) => state.ride);
 
@@ -12,25 +12,25 @@ const DrivingHistory = ({ data }) => {
     dispatch(getCompletedRides());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <Container className="driving-history-container">
       <Header as="h1">Driving History</Header>
       <Table celled>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Ride ID</Table.HeaderCell>
             <Table.HeaderCell>Start Location</Table.HeaderCell>
             <Table.HeaderCell>End Location</Table.HeaderCell>
             <Table.HeaderCell>Total Price</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
             <Table.HeaderCell>User</Table.HeaderCell>
             <Table.HeaderCell>Driver</Table.HeaderCell>
+            <Table.HeaderCell>Rating</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {completedRides.map((ride) => (
             <Table.Row key={ride.id}>
-              <Table.Cell>{ride.id}</Table.Cell>
               <Table.Cell>
                 {ride.startLocationLatitude}, {ride.startLocationLongitude}
               </Table.Cell>
@@ -44,6 +44,13 @@ const DrivingHistory = ({ data }) => {
               </Table.Cell>
               <Table.Cell>
                 {ride.driver.firstName} {ride.driver.lastName}
+              </Table.Cell>
+              <Table.Cell>
+                {ride.rating && (
+                  <>
+                    {ride.rating.value} stars - {ride.rating.comment}
+                  </>
+                )}
               </Table.Cell>
             </Table.Row>
           ))}

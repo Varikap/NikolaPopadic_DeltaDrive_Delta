@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Message, Button, Icon } from "semantic-ui-react";
+import { Header, Message, Button, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -36,6 +36,11 @@ export const Home = () => {
     <div className="landing-page">
       <Message className="message-container" size="huge" secondary="true">
         <Header size="huge">Delta Drive</Header>
+        <Image
+          src={`${process.env.PUBLIC_URL}/android-chrome-512x512.png`}
+          size="small"
+          centered
+        />
         <p>Your journey, our responsibility.</p>
         {showLoginBtn()}
       </Message>

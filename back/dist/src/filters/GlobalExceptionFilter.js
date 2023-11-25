@@ -16,7 +16,6 @@ let GlobalExceptionFilter = class GlobalExceptionFilter {
         const status = exception instanceof common_1.HttpException
             ? exception.getStatus()
             : common_1.HttpStatus.INTERNAL_SERVER_ERROR;
-        console.log(JSON.stringify(exception, null, 2));
         const message = exception instanceof common_1.HttpException
             ? exception.message
             : 'Internal server error';

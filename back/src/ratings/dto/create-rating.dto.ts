@@ -29,4 +29,12 @@ export class CreateRatingDto {
   })
   @IsNumber()
   driverId: number;
+
+  @ApiProperty({
+    example: 1,
+    description: 'Ride ID',
+    required: true,
+  })
+  @IsNumber()
+  rideId: number;
 }

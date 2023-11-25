@@ -1,6 +1,7 @@
+import { User } from '../../users/entities/user.entity';
 import { Vehicle } from '../../vehicles/entities/vehicle.entity';
 import { Driver } from '../../drivers/entities/driver.entity';
-import { User } from '../../users/entities/user.entity';
+import { Rating } from '../../ratings/entities/rating.entity';
 export declare class Ride {
     id: number;
     startLocationLatitude: number;
@@ -12,4 +13,5 @@ export declare class Ride {
     user: User;
     vehicle: Vehicle;
     driver: Driver;
+    rating: Rating;
 }

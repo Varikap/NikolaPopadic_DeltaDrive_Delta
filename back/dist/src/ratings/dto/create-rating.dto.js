@@ -46,4 +46,13 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateRatingDto.prototype, "driverId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        example: 1,
+        description: 'Ride ID',
+        required: true,
+    }),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], CreateRatingDto.prototype, "rideId", void 0);
 //# sourceMappingURL=create-rating.dto.js.map

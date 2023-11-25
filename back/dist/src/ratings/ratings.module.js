@@ -10,6 +10,7 @@ exports.RatingsModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const drivers_module_1 = require("../drivers/drivers.module");
+const ride_entity_1 = require("../rides/entities/ride.entity");
 const users_module_1 = require("../users/users.module");
 const rating_entity_1 = require("./entities/rating.entity");
 const rating_controller_1 = require("./rating.controller");
@@ -21,7 +22,11 @@ exports.RatingsModule = RatingsModule = __decorate([
     (0, common_1.Module)({
         controllers: [rating_controller_1.RatingController],
         providers: [rating_service_1.RatingService],
-        imports: [typeorm_1.TypeOrmModule.forFeature([rating_entity_1.Rating]), users_module_1.UsersModule, drivers_module_1.DriversModule],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([rating_entity_1.Rating, ride_entity_1.Ride]),
+            users_module_1.UsersModule,
+            drivers_module_1.DriversModule,
+        ],
     })
 ], RatingsModule);
 //# sourceMappingURL=ratings.module.js.map

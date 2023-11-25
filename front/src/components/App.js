@@ -30,7 +30,6 @@ export const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          {/* TODO change to private */}
           <PrivateRoute path="/find-ride" component={FindRide} />
           <PrivateRoute path="/book-ride" component={BookRidePage} />
           <PrivateRoute path="/raiting" component={Raiting} />

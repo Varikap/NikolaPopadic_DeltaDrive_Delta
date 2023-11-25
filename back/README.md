@@ -2,9 +2,6 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
@@ -19,44 +16,39 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Prerequisites
+
+Before you start, make sure your Node.js version is at least 18.18.0.
+
 ## Installation
 
-```bash
 $ npm install
-```
 
 ## Running the app
 
-```bash
-# development
+Before running the app, make sure to run the following Docker Compose command in the root folder:
+
+$ docker-compose up
+
+Then, you can run the Nest app:
+
 $ npm run start
-
-# watch mode
 $ npm run start:dev
-
-# production mode
 $ npm run start:prod
-```
 
 ## Test
 
-```bash
-# unit tests
 $ npm run test
-
-# e2e tests
 $ npm run test:e2e
-
-# test coverage
 $ npm run test:cov
-```
+
+## Swagger
+Swagger is available at /swagger
 
 ## Support
 

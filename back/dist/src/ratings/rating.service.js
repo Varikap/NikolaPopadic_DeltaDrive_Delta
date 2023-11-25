@@ -17,11 +17,13 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const driver_service_1 = require("../drivers/driver.service");
+const ride_entity_1 = require("../rides/entities/ride.entity");
 const user_service_1 = require("../users/user.service");
 const rating_entity_1 = require("./entities/rating.entity");
 let RatingService = class RatingService {
-    constructor(ratingRepository, userService, driverService) {
+    constructor(ratingRepository, rideRepository, userService, driverService) {
         this.ratingRepository = ratingRepository;
+        this.rideRepository = rideRepository;
         this.userService = userService;
         this.driverService = driverService;
     }
@@ -39,7 +41,7 @@ let RatingService = class RatingService {
         }
         return this.ratingRepository.find({
             where: { user },
-            relations: ['driver'],
+            relations: ['driver', 'ride'],
         });
     }
     async rate(email, ratingData) {
@@ -51,11 +53,16 @@ let RatingService = class RatingService {
         if (!driver) {
             throw new common_1.NotFoundException(`Driver with ID ${ratingData.driverId} not found`);
         }
+        const ride = await this.rideRepository.findOneBy({ id: ratingData.rideId });
+        if (!ride) {
+            throw new common_1.NotFoundException(`Ride with ID ${ratingData.rideId} not found`);
+        }
         const rating = new rating_entity_1.Rating();
         rating.value = ratingData.value;
         rating.comment = ratingData.comment;
         rating.user = user;
         rating.driver = driver;
+        rating.ride = ride;
         return this.ratingRepository.save(rating);
     }
     async findAll() {
@@ -79,7 +86,9 @@ exports.RatingService = RatingService;
 exports.RatingService = RatingService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(rating_entity_1.Rating)),
+    __param(1, (0, typeorm_1.InjectRepository)(ride_entity_1.Ride)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         user_service_1.UserService,
         driver_service_1.DriverService])
 ], RatingService);

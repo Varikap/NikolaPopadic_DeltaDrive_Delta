@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Map, TileLayer, Marker, Popup, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "./drivingSimulationMap.css";
 import L from "leaflet";
 import LatLon from "geodesy/latlon-nvector-spherical";
 import { useHistory } from "react-router-dom";
@@ -111,40 +112,42 @@ const RoutingMap = () => {
     popupAnchor: [1, -34],
   });
 
-  const driverIcon = new L.Icon({
-    iconUrl: `${process.env.PUBLIC_URL}/images/carMarker.png`,
+  const destinationMarker = new L.Icon({
+    iconUrl: `${process.env.PUBLIC_URL}/images/destinationMarker.png`,
     iconSize: [31, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
   });
 
   return (
-    <Map
-      center={[user.latitude, user.longitude]}
-      zoom={13}
-      style={{ height: "400px", width: "100%" }}
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='© <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
-      />
-
-      <Marker
-        position={[user.latitude, user.longitude]}
-        icon={userIcon}
-        ref={userMarkerRef}
+    <div className="map-container">
+      <Map
+        center={[user.latitude, user.longitude]}
+        zoom={13}
+        style={{ height: "100vh", width: "100%" }}
       >
-        <Popup>Your Location</Popup>
-      </Marker>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='© <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        />
 
-      <Marker
-        position={[destLatitude, destLongitude]}
-        icon={driverIcon}
-        ref={destinationRef}
-      ></Marker>
+        <Marker
+          position={[user.latitude, user.longitude]}
+          icon={userIcon}
+          ref={userMarkerRef}
+        >
+          <Popup>Your Location</Popup>
+        </Marker>
 
-      {route.length > 0 && <Polyline positions={route} color="blue" />}
-    </Map>
+        <Marker
+          position={[destLatitude, destLongitude]}
+          icon={destinationMarker}
+          ref={destinationRef}
+        ></Marker>
+
+        {route.length > 0 && <Polyline positions={route} color="blue" />}
+      </Map>
+    </div>
   );
 };
 

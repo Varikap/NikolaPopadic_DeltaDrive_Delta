@@ -8,7 +8,6 @@ const RatesTable = () => {
   const { rates } = useSelector((state) => state.ride);
 
   useEffect(() => {
-    console.log("useEffect");
     dispatch(getRates());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -24,6 +23,7 @@ const RatesTable = () => {
             <Table.HeaderCell>Driver Name</Table.HeaderCell>
             <Table.HeaderCell>Rating</Table.HeaderCell>
             <Table.HeaderCell>Comment</Table.HeaderCell>
+            <Table.HeaderCell>Ride Details</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -40,6 +40,16 @@ const RatesTable = () => {
               </Table.Cell>
               <Table.Cell>{rate.value}</Table.Cell>
               <Table.Cell>{rate.comment}</Table.Cell>
+              <Table.Cell>
+                <strong>Ride ID:</strong> {rate.ride.id} <br />
+                <strong>Start Location:</strong>{" "}
+                {`${rate.ride.startLocationLatitude}, ${rate.ride.startLocationLongitude}`}{" "}
+                <br />
+                <strong>End Location:</strong>{" "}
+                {`${rate.ride.endLocationLatitude}, ${rate.ride.endLocationLongitude}`}{" "}
+                <br />
+                <strong>Total Price:</strong> {rate.ride.totalPrice} <br />
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

@@ -61,6 +61,4 @@ export class DriverDto {
     description: 'List of ratings received by the driver',
   })
   ratings: RatingDto[];
-
-  // TODO: Add other properties...
 }

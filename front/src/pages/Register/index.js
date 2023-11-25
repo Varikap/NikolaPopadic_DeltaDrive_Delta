@@ -32,13 +32,14 @@ const Register = () => {
     );
   };
 
-  const onFormSubmit = () => {
+  const onFormSubmit = (e) => {
+    e.preventDefault();
     dispatch(registerUser(formData));
   };
 
   return (
     <div className="landing-page">
-      <Message className="message-container" size="huge" secondary>
+      <Message className="message-container" size="huge">
         <Header as="h2" textAlign="center">
           Register
         </Header>
